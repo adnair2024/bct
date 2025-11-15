@@ -61,7 +61,45 @@ Based on:
 - Clean white/gray text  
 - No frontend frameworks required
 
+
 ---
 
 ## 🧩 Project Structure (Overview)
 
+```
+bct/
+│
+├── app.py # Main Flask app (routes, auth, library logic)
+├── database.py # DB connection + initialization + migrations
+├── models.py # CRUD helpers for users + media
+│
+├── api_clients/ # External API integration layer
+│ ├── anilist.py # AniList API (anime)
+│ ├── mangadex.py # MangaDex API (manga)
+│ └── google_books.py # Google Books API (books)
+│
+├── auth/ # Authentication module
+│ ├── init.py
+│ ├── routes.py # /login, /register, /logout
+│ └── utils.py # password hashing, login_required decorator
+│
+├── templates/ # Jinja2 template files
+│ ├── base.html # shared layout (navbar, theme)
+│ ├── login.html # user login form
+│ ├── register.html # user registration form
+│ ├── library.html # main library dashboard (per user)
+│ ├── search.html # search media via APIs
+│ ├── detail.html # item detail + progress/favorite/status
+│ └── edit.html # edit item metadata
+│
+├── static/
+│ ├── style.css # main CSS file
+│ └── dark.css # color theme variables (black/gray look)
+│
+├── migrations/
+│ ├── create_users.sql # schema for users table
+│ └── update_media_user.sql # migration adding user_id to media table
+│
+├── library.db # SQLite database (ignored until created)
+└── README.md # project documentation
+```
